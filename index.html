@@ -2841,10 +2841,24 @@ body { background: var(--bg); color: var(--ink); }
 .footer.v2 .f-soc:hover { background: rgba(255,255,255,0.24); }
 .footer.v2 .f-logo {
   display: flex; align-items: center; justify-content: center;
-  margin-top: 32px;
-  max-width: 600px;
+  margin-top: 40px;
   margin-left: auto;
   margin-right: auto;
+  padding: 24px 16px;
+}
+.footer.v2 .f-logo-img {
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+  display: block;
+  mix-blend-mode: screen;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+  filter: drop-shadow(0 0 24px rgba(200,19,43,0.18));
+}
+.footer.v2 .f-logo-img:hover { transform: scale(1.04); }
+@media (max-width: 760px) {
+  .footer.v2 .f-logo { padding: 16px; margin-top: 28px; }
+  .footer.v2 .f-logo-img { max-width: 240px; }
 }
 .footer.v2 .f-logo-text {
   font-family: "Tangerine","Snell Roundhand",cursive !important;
@@ -4379,11 +4393,7 @@ function Footer() {
         </div>
       </div>
       <div className="f-logo">
-        <div className="f-logo-text">
-          <small>The</small>
-          <span style={{ fontFamily: "\"Helvetica Neue\"" }}>Bridal</span>
-          <span className="f-logo-bottom">Circle</span>
-        </div>
+        <img src="assets/logo-full.png" alt="The Bridal Circle" className="f-logo-img" />
       </div>
       <div className="f-bottom">
         <span>© 2026 The Bridal Circle. All rights reserved.</span>
