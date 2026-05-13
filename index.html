@@ -3723,73 +3723,6 @@ function About() {
 }
 
 /* ===== OFFER TIERS ===== */
-/* ===== YOUTUBE VIDEO SECTION ===== */
-function YoutubeSection() {
-  const [url, setUrl] = useState("");
-  const [embedId, setEmbedId] = useState("");
-
-  const extractId = (raw) => {
-    const patterns = [
-      /(?:youtu\.be\/)([A-Za-z0-9_-]{11})/,
-      /(?:v=)([A-Za-z0-9_-]{11})/,
-      /(?:embed\/)([A-Za-z0-9_-]{11})/,
-    ];
-    for (const p of patterns) {
-      const m = raw.match(p);
-      if (m) return m[1];
-    }
-    if (/^[A-Za-z0-9_-]{11}$/.test(raw.trim())) return raw.trim();
-    return null;
-  };
-
-  const load = () => {
-    const id = extractId(url);
-    if (id) setEmbedId(id);
-  };
-
-  return (
-    <section className="yt-section">
-      <div className="yt-card">
-        <div className="yt-head">
-          <div className="yt-eyebrow">Film</div>
-          <h2 className="yt-title">Our <em>latest</em> work.</h2>
-          <p className="yt-sub">Paste a YouTube link to preview a film from The Bridal Circle or Eva Creative directly here.</p>
-        </div>
-        <div className="yt-input-row">
-          <input
-            className="yt-input"
-            type="text"
-            placeholder="Paste YouTube link or video ID…"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && load()}
-          />
-          <button className="yt-load-btn" onClick={load}>Load film →</button>
-        </div>
-        <div className="yt-embed-wrap">
-          {embedId ? (
-            <iframe
-              src={`https://www.youtube.com/embed/${embedId}?rel=0&modestbranding=1&autoplay=0`}
-              title="The Bridal Circle film"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          ) : (
-            <div className="yt-placeholder">
-              <div className="yt-placeholder-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M8 5v14l11-7z"/>
-                </svg>
-              </div>
-              <span>Paste a link above to preview a film</span>
-            </div>
-          )}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function Offer({ onBegin }) {
   const ai = [
   { n: "01", kind: "AI Preview", name: "BRIDAL GLIMPSE", cta: "Preview", price: "89€",
@@ -3799,16 +3732,6 @@ function Offer({ onBegin }) {
   { n: "02", kind: "AI Preview", name: "BRIDAL VISION", cta: "Order Now", price: "399€",
     desc: "For Brides & Wedding Planners. The full plan, visualized. Send us photos of you, your partner, your venue, your Pinterest saves. We create your wedding day so you and your vendors are aligned before anyone pays a deposit.",
     list: ["You and your partner as bride and groom", "Your venue styled: flowers, lighting, tables, ceremony setup", "3 complete looks: ceremony, reception, golden hour", "Moodboard PDF for your entire vendor team", "1 revision included", "15 second reel", "Personal call with Eva Creative"],
-    medal: true }];
-
-  const real = [
-  { n: "03", kind: "Real Wedding", name: "SIGNATURE", cta: "Book now", price: "3500€",
-    desc: "2 videographers full day, 12 hours.",
-    list: ["Cinematic highlight film 4 to 6 minutes ( final time size depends on the complexity of the wedding)", "Professional color grading and sound design", "Shoot everything / every moment", "Last generation gear · 4k quality delivery", "Drone shoots ( if the conditions allow us )", "The Bridal Circle Wedding Preview: see yourselves as bride and groom before the day · Delivery in 4K, online gallery", "Perfect for intimate weddings and single-day events."],
-    popular: true },
-  { n: "04", kind: "Real Wedding", name: "BESPOKE", cta: "Book Now", price: "4900€",
-    desc: "3 videographers full day, 15 hours.",
-    list: ["Same Day Edit 3 to 5 minutes projected at your reception", "Cinematic highlight film 4 to 6 minutes ( final time size depends on the complexity of the wedding)", "Documentary film 90 to 120 minutes with real vows and toasts", "Professional color grading and sound design by Elena", "Last generation gear · 4k quality delivery", "Drone shoots ( if the conditions allow us )", "The Bridal Circle Wedding Preview BESPOKE: full vision planning with moodboard for you and your vendors", "Delivery in 4K, online gallery + USB keepsake"],
     medal: true }];
 
   const renderCard = (t) =>
@@ -3834,7 +3757,7 @@ function Offer({ onBegin }) {
       </header>
       <div className="tv-price">{t.price}</div>
       <p className="tv-desc">{t.desc}</p>
-      <button className="tv-cta" onClick={() => onBegin(t.kind === "Real Wedding" ? "real" : "ai", t)}>
+      <button className="tv-cta" onClick={() => onBegin("ai", t)}>
         <span>{t.cta}</span>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
           <path d="M7 17 17 7" /><path d="M8 7h9v9" />
@@ -3873,34 +3796,6 @@ function Offer({ onBegin }) {
         </div>
       </section>
 
-      {/* YouTube Video section */}
-      <YoutubeSection />
-
-      {/* Real Wedding section */}
-      <section className="section">
-        <div className="section-card section-card-alt" id="offer-real">
-          <div className="section-head-row tv-head-row">
-            <div className="tv-eyebrow"><span className="tv-eyebrow-dot"></span>Pricing</div>
-            <h2 className="section-title tv-title"><em>Wedding</em> Pricing.</h2>
-            <p className="section-sub tv-sub">
-              We film only 10 weddings per year. Each story receives the time it deserves.
-              Choose the experience that fits your day, and receive your AI Wedding Preview included with every package.
-            </p>
-            <div className="tv-pill">
-              <span>Only 10 Weddings Yearly</span>
-              <span className="tv-pill-tick" aria-hidden="true">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
-              </span>
-            </div>
-          </div>
-          <div className="tiers tiers-2 tv-grid">
-            {real.map(renderCard)}
-          </div>
-          <p className="tv-foot-note">
-            The Bridal Circle Wedding Preview is our planning service. Before we film your real day, we create your vision together. You see the dress, the hair, the venue setup. You walk into your wedding with zero guesswork.
-          </p>
-        </div>
-      </section>
     </React.Fragment>);
 
 }
