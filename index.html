@@ -3867,10 +3867,15 @@ function Vision() {
 
             <div className="vision-label"><span>Or pick a sample bride</span><span>04 Refs</span></div>
             <div className="thumb-strip">
-              {[0, 1, 2, 3].map((i) => <div key={i} className={"thumb" + (thumb === i && !photo ? " is-on" : "")}
-              onClick={() => {setThumb(i);setPhoto(null);setPhase("idle");}}
-              style={{ backgroundImage: `repeating-linear-gradient(${i * 30 + 90}deg, transparent 0 14px, rgba(232,116,42,0.${i + 2}) 14px 15px), linear-gradient(180deg, #2a1810, #0f0d0b)` }} />
-
+              {[
+              "assets/brides/bride-1-tulle-sunset.jpg",
+              "assets/brides/bride-2-portrait.jpg",
+              "assets/brides/bride-3-lace-veil.jpg",
+              "assets/brides/bride-4-ballroom.jpg"].
+              map((src, i) =>
+              <div key={i} className={"thumb" + (thumb === i ? " is-on" : "")}
+              onClick={() => {setThumb(i);setPhoto(src);setPhase("idle");}}
+              style={{ backgroundImage: `url(${src})`, backgroundSize: "cover", backgroundPosition: "center" }} />
               )}
             </div>
 
