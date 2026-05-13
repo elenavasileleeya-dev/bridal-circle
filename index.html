@@ -3632,6 +3632,163 @@ img, video, iframe { max-width: 100%; }
   justify-content: center;
 }
 
+/* ============================================================
+   INTERACTIVE FEEDBACK — pop, lift, select animations
+   ============================================================ */
+@keyframes tap-pop-anim {
+  0% { transform: scale(1); }
+  40% { transform: scale(0.94); }
+  70% { transform: scale(1.04); }
+  100% { transform: scale(1); }
+}
+
+/* Sample bride thumbnails — hover + selected pop */
+.thumb {
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.25s ease, box-shadow 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+  overflow: hidden;
+}
+@media (hover: hover) {
+  .thumb:hover { transform: translateY(-4px) scale(1.04); box-shadow: 0 14px 32px rgba(20,18,14,0.18); }
+}
+.thumb:active { animation: tap-pop-anim 0.32s ease-out; }
+.thumb.is-on {
+  transform: scale(1.06);
+  box-shadow: 0 12px 30px rgba(200,19,43,0.32);
+  outline: 3px solid var(--orange);
+  outline-offset: -3px;
+}
+.thumb.is-on::after {
+  content: "✓";
+  position: absolute;
+  top: 8px; right: 8px;
+  width: 28px; height: 28px;
+  background: var(--orange);
+  color: #fff;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; font-weight: 700;
+  box-shadow: 0 4px 12px rgba(200,19,43,0.5);
+  animation: tap-pop-anim 0.5s ease-out;
+  z-index: 2;
+}
+
+/* Mood chips — soft pop */
+.chip {
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.25s ease, box-shadow 0.25s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+@media (hover: hover) {
+  .chip:hover:not(.is-on) { transform: translateY(-2px); background: var(--bg-alt); }
+}
+.chip:active { animation: tap-pop-anim 0.32s ease-out; }
+.chip.is-on { box-shadow: 0 6px 18px rgba(200,19,43,0.32); transform: translateY(-1px); }
+
+/* Pricing tier cards — interactive lift */
+.tier-card {
+  transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.32s ease, border-color 0.25s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+@media (hover: hover) {
+  .tier-card:hover { transform: translateY(-6px); box-shadow: 0 22px 48px rgba(20,18,14,0.16); }
+}
+.tier-card:active { transform: translateY(-2px) scale(0.99); }
+
+/* Primary buttons — pop on tap */
+.hero-cta, .form-submit, .join-cta, .nav-cta-btn, .tv-cta {
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.25s ease, box-shadow 0.28s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.hero-cta:active, .form-submit:active, .join-cta:active, .nav-cta-btn:active, .tv-cta:active {
+  animation: tap-pop-anim 0.35s ease-out;
+}
+
+/* Nav links — soft pop on tap */
+.nav-bar a {
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease, color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.nav-bar a:active { transform: scale(0.92); }
+
+/* Dress preview / wedding-book figures */
+#wedding-book figure {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+@media (hover: hover) {
+  #wedding-book figure:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 52px rgba(20,18,14,0.14);
+  }
+  #wedding-book figure:hover img { transform: scale(1.015); }
+}
+#wedding-book figure:active { transform: translateY(0) scale(0.995); }
+#wedding-book figure img { transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+
+/* Why-cards — small interaction */
+.why-card {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.25s ease, color 0.25s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+@media (hover: hover) {
+  .why-card:hover { transform: translateY(-3px); background: var(--bg-alt); }
+}
+
+/* Join perks — slide on hover */
+.join-perk {
+  transition: transform 0.25s ease, background-color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+@media (hover: hover) {
+  .join-perk:hover { transform: translateX(4px); }
+}
+
+/* ============================================================
+   MOBILE — extra refinements for new sections
+   ============================================================ */
+@media (max-width: 760px) {
+  #wedding-book .section-card { padding: 22px 16px !important; }
+  #wedding-book figure { border-radius: 14px; }
+  #wedding-book figure figcaption {
+    padding: 16px 18px !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+  }
+  #wedding-book figure figcaption h3 { font-size: 19px !important; }
+  #wedding-book figure figcaption p { font-size: 14px !important; }
+
+  #atelier > .section-card { padding: 22px 16px !important; }
+  #atelier h2.section-title { font-size: clamp(28px, 8vw, 40px) !important; line-height: 1.05 !important; }
+
+  .thumb-strip { gap: 10px !important; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
+  .thumb { min-width: 76px !important; min-height: 76px !important; flex: 0 0 auto; }
+
+  .chip-row { gap: 8px !important; flex-wrap: wrap !important; }
+  .chip { padding: 9px 14px !important; font-size: 12px !important; }
+
+  .tv-pill { font-size: 12px !important; padding: 10px 14px !important; }
+
+  .contact-title { font-size: clamp(36px, 11vw, 56px) !important; line-height: 1 !important; }
+
+  .why-cards { gap: 10px !important; }
+  .why-card { padding: 14px 16px !important; font-size: 14px !important; }
+
+  .join-perks { grid-template-columns: 1fr !important; gap: 10px !important; }
+
+  .hero-cta { width: 100%; justify-content: center; }
+}
+
+@media (max-width: 480px) {
+  #wedding-book figure figcaption h3 { font-size: 17px !important; }
+  .thumb { min-width: 68px !important; min-height: 68px !important; }
+  .nav-bar a { font-size: 11px !important; padding: 6px 9px !important; }
+  .hero-cta { font-size: 13px !important; padding: 13px 22px !important; }
+}
+
 </style>
 </head>
 <body>
