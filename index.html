@@ -4590,39 +4590,44 @@ function Join() {
     </section>);
 }
 
-/* ===== WEDDING BOOK CONTENTS ===== */
+/* ===== DRESS PREVIEW TRY-ON ===== */
 function WeddingBookContents() {
-  const items = [
-  { icon: "€", title: "Wedding Budget", desc: "Full breakdown — line by line. Photography, flowers, dress, catering, decor. You see where every euro goes before you commit.", tag: "Save 1000s in surprises" },
-  { icon: "✦", title: "Personal Moodboard", desc: "A curated visual story of your day. Mood, light, atmosphere, references — the one document your entire vendor team will follow.", tag: "Editorial quality" },
-  { icon: "◐", title: "Color Palette", desc: "The exact palette for your wedding — invitations, flowers, table linens, bridesmaid dresses. Cohesive, intentional, photographable.", tag: "Pinterest-ready" },
-  { icon: "❀", title: "Flower Selection", desc: "Bouquet, centerpieces, ceremony arch. Recommendations matched to your venue, season and budget — with photo references.", tag: "Vendor-ready brief" },
-  { icon: "♛", title: "Dress Direction", desc: "Silhouette, fabric, neckline, accessories. AI previews of you in 3 directions so you walk into fittings with clarity, not chaos.", tag: "See it on you first" },
-  { icon: "✶", title: "Venue & Setup", desc: "Ceremony, reception, golden hour — your space styled. Lighting, tables, flowers, photo spots. Visualize before you book.", tag: "Zero surprises on the day" }];
+  const dresses = [
+  { src: "assets/preview/dress-tulle-aline.jpg", name: "Tulle A-line", desc: "Off-shoulder, draped tulle with floral detailing. Romantic, soft, ethereal." },
+  { src: "assets/preview/dress-ballgown.jpg", name: "Classic Ballgown", desc: "Strapless silk taffeta with signature black bow. Timeless, structured, iconic." },
+  { src: "assets/preview/dress-lace-mermaid.jpg", name: "Lace Mermaid", desc: "Sweetheart corset, hand-applied lace, cathedral veil. Editorial, sculpted, statement." }];
 
 
   return (
     <section className="section" id="wedding-book">
       <div className="section-card">
         <div className="section-head-row tv-head-row">
-          <div className="tv-eyebrow"><span className="tv-eyebrow-dot"></span>What's inside</div>
-          <h2 className="section-title tv-title"><em>Your</em> Wedding Book.</h2>
+          <div className="tv-eyebrow"><span className="tv-eyebrow-dot"></span>Dress Preview · Try-On</div>
+          <h2 className="section-title tv-title"><em>See</em> the dress<br />before you say yes.</h2>
           <p className="section-sub tv-sub">
-            Six pieces. One clear vision. Delivered as a beautiful PDF you can share with every vendor —
-            so everyone, from florist to photographer, works from the same page.
+            Every Wedding Book includes a full dress preview: front, side, back, face, and three close-up details — so you walk into fittings knowing exactly what works on you.
           </p>
         </div>
-        <div className="tiers tv-grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 18 }}>
-          {items.map((it, i) =>
-          <article key={i} className="tier-card v2" style={{ padding: "28px 24px" }}>
-              <div style={{ fontSize: 32, color: "var(--orange)", fontFamily: "var(--f-display)", marginBottom: 14, lineHeight: 1 }}>{it.icon}</div>
-              <h3 className="tv-name" style={{ fontSize: 22, marginBottom: 10 }}>{it.title}</h3>
-              <p className="tv-desc" style={{ marginBottom: 16 }}>{it.desc}</p>
-              <div className="tv-pill" style={{ display: "inline-flex", fontSize: 11, padding: "8px 14px" }}>
-                <span>{it.tag}</span>
-              </div>
-            </article>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 28, marginTop: 8 }}>
+          {dresses.map((d, i) =>
+          <figure key={i} style={{ margin: 0, background: "var(--bg-card)", borderRadius: 18, overflow: "hidden", border: "1px solid var(--line)" }}>
+              <img src={d.src} alt={d.name} style={{ display: "block", width: "100%", height: "auto" }} loading="lazy" />
+              <figcaption style={{ padding: "20px 26px", display: "flex", flexWrap: "wrap", gap: 16, alignItems: "baseline", justifyContent: "space-between", borderTop: "1px solid var(--line)" }}>
+                <div>
+                  <div style={{ fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--muted)", marginBottom: 6 }}>Style {String(i + 1).padStart(2, '0')}</div>
+                  <h3 style={{ margin: 0, fontFamily: "var(--f-display)", fontSize: 24, fontWeight: 700 }}>{d.name}</h3>
+                </div>
+                <p style={{ margin: 0, color: "var(--muted)", fontSize: 15, maxWidth: "52ch", lineHeight: 1.55 }}>{d.desc}</p>
+              </figcaption>
+            </figure>
           )}
+        </div>
+
+        <div style={{ marginTop: 36, textAlign: "center" }}>
+          <div className="tv-pill" style={{ display: "inline-flex" }}>
+            <span>Plus: venue, flowers, decor, budget — full Wedding Book at 399€</span>
+          </div>
         </div>
       </div>
     </section>);
