@@ -1570,6 +1570,31 @@ a { color: inherit; text-decoration: none; }
 
 .modal-textarea { min-height: 110px; resize: vertical; }
 
+.modal-field { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+.modal-field > label {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted, #6E6557);
+  font-weight: 700;
+  display: block;
+}
+.modal-shell.real .modal-field > label { color: rgba(255,255,255,0.7); }
+.modal-field .modal-input { margin-bottom: 0; }
+.modal-field .modal-pills { margin-top: 0; }
+.modal-select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'><path d='M1 1l5 5 5-5' stroke='%2314120E' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 38px;
+  cursor: pointer;
+}
+.modal-shell.real .modal-select {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'><path d='M1 1l5 5 5-5' stroke='%23ffffff' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+}
+
 .modal-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -2572,7 +2597,9 @@ body { background: var(--bg); color: var(--ink); }
   color: #fff !important;
 }
 .modal-input::placeholder,
-.modal-textarea::placeholder { color: rgba(255,255,255,0.45) !important; }
+.modal-textarea::placeholder { color: rgba(20,18,14,0.45) !important; }
+.modal-shell.real .modal-input::placeholder,
+.modal-shell.real .modal-textarea::placeholder { color: rgba(255,255,255,0.45) !important; }
 .modal-pill {
   font-size: 14px !important;
   letter-spacing: 0 !important;
@@ -3647,6 +3674,216 @@ img, video, iframe { max-width: 100%; }
 }
 
 /* ============================================================
+   HERO CARD + FEATURE ICONS + HAMBURGER MENU
+   ============================================================ */
+/* White card overlay around hero text (right side) */
+.hero-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 24px;
+  padding: 36px 32px;
+  box-shadow: 0 24px 60px rgba(20, 18, 14, 0.16), 0 4px 20px rgba(20, 18, 14, 0.06);
+  position: relative;
+  max-width: 480px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+.hero-spark {
+  position: absolute;
+  top: 18px; right: 22px;
+  font-size: 22px;
+  color: var(--orange);
+  opacity: 0.7;
+}
+.hero-card-title {
+  font-family: var(--f-display);
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0 0 16px;
+}
+.hero-card-title em {
+  color: var(--red);
+  font-style: italic;
+  font-weight: 700;
+}
+.hero-card-line {
+  width: 64px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--red) 0%, rgba(200,19,43,0.2) 100%);
+  border-radius: 2px;
+  margin-bottom: 18px;
+}
+.hero-card-sub {
+  font-size: 15.5px;
+  line-height: 1.55;
+  color: var(--muted);
+  margin: 0 0 26px;
+  max-width: 38ch;
+}
+.hero-card-sub strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+.hero-card .hero-cta {
+  width: 100%;
+  justify-content: center;
+}
+
+/* Bottom icons row */
+.hero-features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 24px;
+  padding: 18px 22px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(20, 18, 14, 0.12);
+  max-width: var(--max);
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  z-index: 2;
+}
+.hero-feature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 4px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.hero-feature:hover {
+  transform: translateY(-3px);
+  background: rgba(200, 19, 43, 0.05);
+}
+.hero-feature:active { transform: scale(0.96); }
+.hero-feature-icon {
+  color: var(--red);
+  display: block;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.hero-feature:hover .hero-feature-icon { transform: scale(1.12); }
+.hero-feature span {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* Mobile hamburger button */
+.hamburger {
+  display: none;
+  position: fixed;
+  top: 18px; right: 18px;
+  z-index: 1001;
+  width: 48px; height: 48px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(20, 18, 14, 0.08);
+  border-radius: 14px;
+  cursor: pointer;
+  padding: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  box-shadow: 0 6px 20px rgba(20, 18, 14, 0.12);
+  transition: all 0.25s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.hamburger:active { transform: scale(0.92); }
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.is-open span:nth-child(2) { opacity: 0; }
+.hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+@media (max-width: 900px) {
+  .hamburger { display: flex; }
+  .hero-features {
+    grid-template-columns: repeat(4, 1fr);
+    padding: 12px 8px;
+    gap: 4px;
+    margin-top: 16px;
+  }
+  .hero-feature span { font-size: 9.5px; letter-spacing: 0.12em; }
+  .hero-feature-icon { width: 26px; height: 26px; }
+  .hero-card {
+    padding: 28px 24px;
+    border-radius: 20px;
+  }
+  .hero-card-title { font-size: clamp(28px, 7.5vw, 38px); }
+  .hero-card-sub { font-size: 14px; }
+
+  /* Mobile slide-out nav menu */
+  .nav-bar {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    left: auto !important;
+    width: 78%;
+    max-width: 340px;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    padding: 88px 28px 32px !important;
+    border-radius: 0 !important;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: -20px 0 50px rgba(20, 18, 14, 0.18);
+    border: none !important;
+    z-index: 1000;
+    gap: 8px !important;
+    overflow-y: auto;
+  }
+  .nav-bar.is-open { transform: translateX(0); }
+  .nav-bar a {
+    font-size: 18px !important;
+    padding: 14px 16px !important;
+    text-align: left;
+    border-radius: 12px;
+    border-bottom: 1px solid rgba(20, 18, 14, 0.06);
+  }
+  .nav-bar a:last-of-type { border-bottom: none; }
+  .nav-bar .nav-cta-btn {
+    margin-top: 16px;
+    padding: 16px 22px !important;
+    font-size: 14px !important;
+    width: 100%;
+    justify-content: center;
+  }
+}
+@media (max-width: 480px) {
+  .hero-card { padding: 24px 20px; }
+  .hero-features { padding: 10px 6px; }
+  .hero-feature span { font-size: 9px; }
+  .hero-feature-icon { width: 22px; height: 22px; }
+}
+
+/* ============================================================
    WAITLIST MODAL
    ============================================================ */
 @keyframes wl-fade-in { from { opacity: 0; } to { opacity: 1; } }
@@ -3950,6 +4187,7 @@ const { useState, useEffect, useRef, useCallback } = React;
 /* ===== HERO (white) ===== */
 function Hero() {
   const bgRef = useRef(null);
+  const [menuOpen, setMenuOpen] = useState(false);
   useEffect(() => {
     const onScroll = () => {
       if (!bgRef.current) return;
@@ -3959,16 +4197,29 @@ function Hero() {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+  const navTo = (id) => {
+    setMenuOpen(false);
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  };
   return (
     <section className="hero" id="home">
       <div className="hero-bg" ref={bgRef}></div>
-      <div className="nav-bar">
-        <a href="#why" onClick={(e) => {e.preventDefault();document.getElementById('why')?.scrollIntoView({ behavior: 'smooth' });}}>About</a>
-        <a href="#offer" onClick={(e) => {e.preventDefault();document.getElementById('offer')?.scrollIntoView({ behavior: 'smooth' });}}>Pricing</a>
-        <a href="#wedding-book" onClick={(e) => {e.preventDefault();document.getElementById('wedding-book')?.scrollIntoView({ behavior: 'smooth' });}}>Preview</a>
-        <a href="#atelier" onClick={(e) => {e.preventDefault();document.getElementById('atelier')?.scrollIntoView({ behavior: 'smooth' });}}>Bridal Preview</a>
-        <a href="#join" onClick={(e) => {e.preventDefault();document.getElementById('join')?.scrollIntoView({ behavior: 'smooth' });}}>Community</a>
-        <button className="nav-cta-btn" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>Start preview</button>
+
+      {/* Mobile hamburger button */}
+      <button
+        className={"hamburger" + (menuOpen ? " is-open" : "")}
+        onClick={() => setMenuOpen(!menuOpen)}
+        aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div className={"nav-bar" + (menuOpen ? " is-open" : "")}>
+        <a href="#why" onClick={(e) => {e.preventDefault();navTo('why');}}>About</a>
+        <a href="#offer" onClick={(e) => {e.preventDefault();navTo('offer');}}>Pricing</a>
+        <a href="#wedding-book" onClick={(e) => {e.preventDefault();navTo('wedding-book');}}>Gallery</a>
+        <a href="#atelier" onClick={(e) => {e.preventDefault();navTo('atelier');}}>Bridal Preview</a>
+        <a href="#join" onClick={(e) => {e.preventDefault();navTo('join');}}>Community</a>
+        <button className="nav-cta-btn" onClick={() => navTo('contact')}>Start preview</button>
       </div>
       <div className="hero-inner" style={{ fontFamily: "-apple-system", fontWeight: "600" }}>
         <div className="hero-top">
@@ -3983,14 +4234,55 @@ function Hero() {
             Bridal <em>Circle</em>
           </h1>
           <div className="hero-rt-stack">
-            <p className="hero-copy">
-              <strong style={{ display: "block", fontSize: "1.15em", marginBottom: "0.45em" }}>See your wedding before it happens.</strong>
-              An <em>AI wedding planning preview</em>. Your dress, your flowers, your venue, your budget —
-              everything, in 10 minutes. Before you book a single vendor.
-            </p>
-            <button className="hero-cta" onClick={() => document.getElementById('offer')?.scrollIntoView({ behavior: 'smooth' })}>
-              Get your wedding preview <span className="hero-cta-arrow">→</span>
-            </button>
+            <div className="hero-card">
+              <span className="hero-spark">✦</span>
+              <h2 className="hero-card-title">See your wedding<br /><em>before</em> it happens.</h2>
+              <div className="hero-card-line"></div>
+              <p className="hero-card-sub">
+                AI-generated bridal previews for your <strong>dress</strong>, <strong>flowers</strong>, <strong>venue</strong> and <strong>mood</strong> — in just a few minutes.
+              </p>
+              <button className="hero-cta" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
+                Get your wedding preview <span className="hero-cta-arrow">→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom icons row */}
+        <div className="hero-features">
+          <div className="hero-feature">
+            <svg className="hero-feature-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 4 L20 4 L18 9 L22 12 L26 28 L6 28 L10 12 L14 9 Z"/>
+              <path d="M12 9 L20 9"/>
+            </svg>
+            <span>Your Dress</span>
+          </div>
+          <div className="hero-feature">
+            <svg className="hero-feature-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="16" cy="11" r="4"/>
+              <circle cx="10" cy="15" r="3"/>
+              <circle cx="22" cy="15" r="3"/>
+              <circle cx="13" cy="19" r="3"/>
+              <circle cx="19" cy="19" r="3"/>
+              <path d="M16 22 L16 28"/>
+            </svg>
+            <span>Your Flowers</span>
+          </div>
+          <div className="hero-feature">
+            <svg className="hero-feature-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M6 28 L6 14 L16 6 L26 14 L26 28 Z"/>
+              <path d="M12 28 L12 19 L20 19 L20 28"/>
+              <path d="M6 14 L26 14"/>
+            </svg>
+            <span>Your Venue</span>
+          </div>
+          <div className="hero-feature">
+            <svg className="hero-feature-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M16 4 L18 12 L26 14 L18 16 L16 24 L14 16 L6 14 L14 12 Z"/>
+              <circle cx="24" cy="6" r="1.5" fill="currentColor"/>
+              <circle cx="8" cy="22" r="1.5" fill="currentColor"/>
+            </svg>
+            <span>Your Mood</span>
           </div>
         </div>
       </div>
@@ -4569,7 +4861,7 @@ function Footer() {
           <ul className="f-nav">
             <li onClick={() => document.getElementById('why')?.scrollIntoView({ behavior: 'smooth' })}>About</li>
             <li onClick={() => document.getElementById('offer')?.scrollIntoView({ behavior: 'smooth' })}>Pricing</li>
-            <li onClick={() => document.getElementById('wedding-book')?.scrollIntoView({ behavior: 'smooth' })}>Preview</li>
+            <li onClick={() => document.getElementById('wedding-book')?.scrollIntoView({ behavior: 'smooth' })}>Gallery</li>
             <li onClick={() => document.getElementById('atelier')?.scrollIntoView({ behavior: 'smooth' })}>Bridal Preview</li>
             <li onClick={() => document.getElementById('join')?.scrollIntoView({ behavior: 'smooth' })}>Community</li>
             <li onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}>Contact us</li>
@@ -4622,22 +4914,95 @@ function Questionnaire({ kind, tier, onClose }) {
   const aiSteps = [
   {
     title: "Tell us about <em>you</em>.",
-    sub: "Just so we know who's writing back.",
+    sub: "So we know who's writing back and how to reach you.",
     render: () =>
     <React.Fragment>
           <div className="modal-grid">
-            <input className="modal-input" placeholder="First name" value={data.first || ""} onChange={(e) => set("first", e.target.value)} />
-            <input className="modal-input" placeholder="Last name" value={data.last || ""} onChange={(e) => set("last", e.target.value)} />
+            <div className="modal-field">
+              <label>First name</label>
+              <input className="modal-input" placeholder="Jane" value={data.first || ""} onChange={(e) => set("first", e.target.value)} />
+            </div>
+            <div className="modal-field">
+              <label>Last name</label>
+              <input className="modal-input" placeholder="Smith" value={data.last || ""} onChange={(e) => set("last", e.target.value)} />
+            </div>
           </div>
-          <input className="modal-input" placeholder="Email" type="email" value={data.email || ""} onChange={(e) => set("email", e.target.value)} style={{ marginBottom: 12 }} />
-          <input className="modal-input" placeholder="Wedding date (or rough month)" value={data.date || ""} onChange={(e) => set("date", e.target.value)} />
+          <div className="modal-field">
+            <label>Email</label>
+            <input className="modal-input" placeholder="jane@email.com" type="email" value={data.email || ""} onChange={(e) => set("email", e.target.value)} />
+          </div>
+          <div className="modal-field">
+            <label>Phone (with country code)</label>
+            <input className="modal-input" placeholder="+40 7XX XXX XXX" type="tel" value={data.phone || ""} onChange={(e) => set("phone", e.target.value)} />
+          </div>
+          <div className="modal-field">
+            <label>How should we contact you?</label>
+            <div className="modal-pills">
+              {["WhatsApp", "Email", "Both"].map((p) =>
+              <button key={p} className={"modal-pill" + (data.contact === p ? " on" : "")} onClick={() => set("contact", p)}>{p}</button>
+              )}
+            </div>
+          </div>
         </React.Fragment>,
 
-    valid: () => data.first && data.email
+    valid: () => data.first && data.email && data.phone && data.contact
+  },
+  {
+    title: "Your <em>wedding day</em>.",
+    sub: "The basics that shape every detail of your preview.",
+    render: () =>
+    <React.Fragment>
+          <div className="modal-grid">
+            <div className="modal-field">
+              <label>Wedding date</label>
+              <input className="modal-input" placeholder="June 2026" value={data.date || ""} onChange={(e) => set("date", e.target.value)} />
+            </div>
+            <div className="modal-field">
+              <label>City / country</label>
+              <input className="modal-input" placeholder="Como, Italy" value={data.location || ""} onChange={(e) => set("location", e.target.value)} />
+            </div>
+          </div>
+          <div className="modal-field">
+            <label>Venue type</label>
+            <div className="modal-pills">
+              {["Castle", "Villa", "Vineyard", "Beach", "Garden", "Hotel", "Church", "Outdoor estate", "Undecided"].map((p) =>
+              <button key={p} className={"modal-pill" + (data.venueType === p ? " on" : "")} onClick={() => set("venueType", p)}>{p}</button>
+              )}
+            </div>
+          </div>
+          <div className="modal-grid">
+            <div className="modal-field">
+              <label>Approx. guest count</label>
+              <input className="modal-input" placeholder="80" value={data.guests || ""} onChange={(e) => set("guests", e.target.value)} />
+            </div>
+            <div className="modal-field">
+              <label>Total budget range</label>
+              <select className="modal-input modal-select" value={data.budget || ""} onChange={(e) => set("budget", e.target.value)}>
+                <option value="">Select…</option>
+                <option>Under 10 000€</option>
+                <option>10 000 — 25 000€</option>
+                <option>25 000 — 50 000€</option>
+                <option>50 000 — 100 000€</option>
+                <option>100 000€+</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+          </div>
+          <div className="modal-field">
+            <label>Are you working with a wedding planner?</label>
+            <div className="modal-pills">
+              {["Yes, hired one", "Looking for one", "Planning myself", "DIY with help"].map((p) =>
+              <button key={p} className={"modal-pill" + (data.plannerStatus === p ? " on" : "")} onClick={() => set("plannerStatus", p)}>{p}</button>
+              )}
+            </div>
+          </div>
+        </React.Fragment>,
+
+    valid: () => data.date && data.location && data.venueType && data.budget
   },
   {
     title: "Upload your <em>reference</em>.",
-    sub: "A clear, well-lit portrait works best. We'll use this as the foundation for your AI bridal images.",
+    sub: "A clear, well-lit portrait works best — face visible, soft natural light. This is the foundation for your bridal previews.",
     render: () =>
     <React.Fragment>
           <label className="modal-upload">
@@ -4651,7 +5016,7 @@ function Questionnaire({ kind, tier, onClose }) {
         <React.Fragment>
                 <div className="modal-upload-icon">+</div>
                 <div className="modal-upload-label">Drop or browse</div>
-                <div className="modal-upload-sub">JPG or PNG · max 10MB · faces clearly visible</div>
+                <div className="modal-upload-sub">JPG or PNG · max 10MB · face clearly visible</div>
               </React.Fragment>
         }
           </label>
@@ -4660,47 +5025,100 @@ function Questionnaire({ kind, tier, onClose }) {
     valid: () => !!data.photo
   },
   {
-    title: "Your <em>wedding world</em>.",
-    sub: "Pick the moodboard direction closest to your vision. We'll refine on the call.",
+    title: "Your <em>aesthetic</em>.",
+    sub: "Pick the moodboard direction closest to your vision — and the dress shapes you'd love to see on you.",
     render: () =>
-    <div className="modal-options">
-          {[
-      { n: "01", t: "Coastal Romantic", s: "Sea, linen, sunlight, white florals" },
-      { n: "02", t: "Tuscan Villa", s: "Stone, ochre, olive, golden hour" },
-      { n: "03", t: "Parisian Salon", s: "Bouclé, cream, antique lace, candlelight" },
-      { n: "04", t: "Nordic Soft", s: "Birch, fog, ivory, minimalist florals" },
-      { n: "05", t: "Andalusian Sun", s: "Terracotta, jasmine, deep oranges" },
-      { n: "06", t: "Other / undecided", s: "We'll help you find the direction" }].
-      map((o) =>
-      <div key={o.n} className={"modal-option" + (data.world === o.t ? " on" : "")} onClick={() => set("world", o.t)}>
-              <div className="modal-option-num">{o.n}</div>
-              <div className="modal-option-body">
-                <div className="modal-option-title">{o.t}</div>
-                <div className="modal-option-sub">{o.s}</div>
-              </div>
+    <React.Fragment>
+          <div className="modal-field">
+            <label>Wedding mood</label>
+            <div className="modal-options">
+              {[
+              { n: "01", t: "Coastal Romantic", s: "Sea, linen, sunlight, white florals" },
+              { n: "02", t: "Tuscan Villa", s: "Stone, ochre, olive, golden hour" },
+              { n: "03", t: "Parisian Salon", s: "Bouclé, cream, antique lace, candlelight" },
+              { n: "04", t: "Nordic Soft", s: "Birch, fog, ivory, minimalist florals" },
+              { n: "05", t: "Andalusian Sun", s: "Terracotta, jasmine, deep oranges" },
+              { n: "06", t: "Royal Castle", s: "Burgundy roses, gold, candelabras, drama" },
+              { n: "07", t: "Modern Editorial", s: "Sculpted, monochrome, fashion-forward" },
+              { n: "08", t: "Boho Wildflower", s: "Pampas, dried palettes, sun-drenched" }].
+              map((o) =>
+              <div key={o.n} className={"modal-option" + (data.world === o.t ? " on" : "")} onClick={() => set("world", o.t)}>
+                  <div className="modal-option-num">{o.n}</div>
+                  <div className="modal-option-body">
+                    <div className="modal-option-title">{o.t}</div>
+                    <div className="modal-option-sub">{o.s}</div>
+                  </div>
+                </div>
+              )}
             </div>
-      )}
-        </div>,
+          </div>
+          <div className="modal-field">
+            <label>Dress silhouettes (pick all you'd like to see)</label>
+            <div className="modal-pills">
+              {["A-line", "Mermaid", "Ball gown", "Sheath", "Empire", "Tea-length", "Two-piece", "Surprise me"].map((p) =>
+              <button key={p} className={"modal-pill" + ((data.dresses || []).includes(p) ? " on" : "")} onClick={() => togglePill("dresses", p)}>{p}</button>
+              )}
+            </div>
+          </div>
+        </React.Fragment>,
 
-    valid: () => !!data.world
+    valid: () => !!data.world && (data.dresses || []).length > 0
   },
   {
-    title: "Dress <em>silhouettes</em>.",
-    sub: "Pick all you'd like to see — we'll render every selection.",
+    title: "Colors &amp; <em>flowers</em>.",
+    sub: "Tell us what colors and blooms you love — and any you'd rather avoid.",
     render: () =>
-    <div className="modal-pills">
-          {["A-line", "Mermaid", "Ball gown", "Sheath", "Empire", "Tea-length", "Two-piece", "Surprise me"].map((p) =>
-      <button key={p} className={"modal-pill" + ((data.dresses || []).includes(p) ? " on" : "")} onClick={() => togglePill("dresses", p)}>{p}</button>
-      )}
-        </div>,
+    <React.Fragment>
+          <div className="modal-field">
+            <label>Color palette you love (pick any)</label>
+            <div className="modal-pills">
+              {["Ivory & cream", "Blush pink", "Burgundy", "Forest green", "Dusty blue", "Champagne gold", "Terracotta", "Black & white", "Pastel rainbow", "Earth tones"].map((p) =>
+              <button key={p} className={"modal-pill" + ((data.colorsLove || []).includes(p) ? " on" : "")} onClick={() => togglePill("colorsLove", p)}>{p}</button>
+              )}
+            </div>
+          </div>
+          <div className="modal-field">
+            <label>Colors to avoid</label>
+            <div className="modal-pills">
+              {["Bright yellow", "Hot pink", "Neon", "Orange", "Purple", "Red", "Black", "None"].map((p) =>
+              <button key={p} className={"modal-pill" + ((data.colorsAvoid || []).includes(p) ? " on" : "")} onClick={() => togglePill("colorsAvoid", p)}>{p}</button>
+              )}
+            </div>
+          </div>
+          <div className="modal-field">
+            <label>Flowers you love (pick any)</label>
+            <div className="modal-pills">
+              {["Roses", "Peonies", "Hydrangeas", "Eucalyptus", "Baby's breath", "Wildflowers", "Orchids", "Lilies", "Tulips", "Anemones", "Pampas grass", "Surprise me"].map((p) =>
+              <button key={p} className={"modal-pill" + ((data.flowers || []).includes(p) ? " on" : "")} onClick={() => togglePill("flowers", p)}>{p}</button>
+              )}
+            </div>
+          </div>
+        </React.Fragment>,
 
-    valid: () => (data.dresses || []).length > 0
+    valid: () => (data.colorsLove || []).length > 0 && (data.flowers || []).length > 0
   },
   {
-    title: "What should we <em>know</em>?",
-    sub: "Anything that matters — heritage details, a specific dress you love, hair direction, the exact light at your venue.",
+    title: "The <em>vibe</em>.",
+    sub: "What you absolutely love. What you absolutely don't. The more we know, the truer your preview will feel.",
     render: () =>
-    <textarea className="modal-textarea" placeholder="Tell us anything that helps us see your day…" value={data.notes || ""} onChange={(e) => set("notes", e.target.value)} />,
+    <React.Fragment>
+          <div className="modal-field">
+            <label>What you LOVE (Pinterest references, specific designers, vibes…)</label>
+            <textarea className="modal-textarea" placeholder="e.g. Vera Wang dresses, Bella Hadid bridal looks, candle-lit dinners, vintage cars, asymmetric bouquets, sunset light…" value={data.loves || ""} onChange={(e) => set("loves", e.target.value)} />
+          </div>
+          <div className="modal-field">
+            <label>What you'd rather AVOID</label>
+            <textarea className="modal-textarea" placeholder="e.g. Anything too princess-y, big balloons, bright lighting, traditional table runners, glitter…" value={data.avoid || ""} onChange={(e) => set("avoid", e.target.value)} />
+          </div>
+        </React.Fragment>,
+
+    valid: () => true
+  },
+  {
+    title: "Anything <em>else</em>?",
+    sub: "Heritage details, must-have moments, family expectations, special vendors, the exact light at your venue — anything that matters.",
+    render: () =>
+    <textarea className="modal-textarea" placeholder="Tell us anything that helps us truly see your day…" value={data.notes || ""} onChange={(e) => set("notes", e.target.value)} style={{ minHeight: 180 }} />,
 
     valid: () => true
   }];
