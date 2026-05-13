@@ -3667,12 +3667,12 @@ function Hero() {
     <section className="hero" id="home">
       <div className="hero-bg" ref={bgRef}></div>
       <div className="nav-bar">
-        <a href="#atelier" onClick={(e) => {e.preventDefault();document.getElementById('atelier')?.scrollIntoView({ behavior: 'smooth' });}}>Gallery</a>
-        <a href="#why" onClick={(e) => {e.preventDefault();document.getElementById('why')?.scrollIntoView({ behavior: 'smooth' });}}>Who & Why</a>
-        <a href="#offer" onClick={(e) => {e.preventDefault();document.getElementById('offer')?.scrollIntoView({ behavior: 'smooth' });}}>Create</a>
-        <a href="#vision" onClick={(e) => {e.preventDefault();document.getElementById('vision')?.scrollIntoView({ behavior: 'smooth' });}}>Refine</a>
+        <a href="#why" onClick={(e) => {e.preventDefault();document.getElementById('why')?.scrollIntoView({ behavior: 'smooth' });}}>About</a>
+        <a href="#offer" onClick={(e) => {e.preventDefault();document.getElementById('offer')?.scrollIntoView({ behavior: 'smooth' });}}>Pricing</a>
+        <a href="#vision" onClick={(e) => {e.preventDefault();document.getElementById('vision')?.scrollIntoView({ behavior: 'smooth' });}}>Wedding Book</a>
+        <a href="#atelier" onClick={(e) => {e.preventDefault();document.getElementById('atelier')?.scrollIntoView({ behavior: 'smooth' });}}>AI Atelier</a>
         <a href="#join" onClick={(e) => {e.preventDefault();document.getElementById('join')?.scrollIntoView({ behavior: 'smooth' });}}>Community</a>
-        <button className="nav-cta-btn" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>Build Your Bridal World</button>
+        <button className="nav-cta-btn" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>Get your Wedding Book</button>
       </div>
       <div className="hero-inner" style={{ fontFamily: "-apple-system", fontWeight: "600" }}>
         <div className="hero-top">
@@ -3688,11 +3688,11 @@ function Hero() {
           </h1>
           <div className="hero-rt-stack">
             <p className="hero-copy">
-              Preview your wedding day before it happens. Cinematic films by Eva Creative,
-              and curated AI bridal imagery that turns your moodboard into images of <em>you</em>.
+              Plan your entire wedding in 10 minutes. Get your <em>Wedding Book</em>: budget,
+              moodboard, dress, flowers, venue — your day visualized before you spend a single deposit.
             </p>
             <button className="hero-cta" onClick={() => document.getElementById('offer')?.scrollIntoView({ behavior: 'smooth' })}>
-              Build Your Bridal World <span className="hero-cta-arrow">→</span>
+              Get your Wedding Book <span className="hero-cta-arrow">→</span>
             </button>
           </div>
         </div>
@@ -3712,10 +3712,9 @@ function About() {
           <h2 className="about-title">About</h2>
         </div>
         <p className="about-copy">
-          The Bridal Circle is the meeting point between real and imagined. We pair the cinematic
-          wedding films of Eva Creative with a private AI atelier that translates a bride's
-          Pinterest moodboard into images of her — the dress, the light, the day she has been
-          dreaming of. We don't replace your photographer. We help you see, before you say yes.
+          The Bridal Circle is your wedding, planned in 10 minutes. A private AI atelier that translates
+          your Pinterest moodboard into a complete Wedding Book — budget, dress, flowers, venue, setup.
+          Designed by Eva Creative, for brides who want clarity before commitment.
         </p>
       </div>
     </section>);
@@ -3725,13 +3724,13 @@ function About() {
 /* ===== OFFER TIERS ===== */
 function Offer({ onBegin }) {
   const ai = [
-  { n: "01", kind: "AI Preview", name: "BRIDAL GLIMPSE", cta: "Preview", price: "89€",
-    desc: "Ten AI-rendered images of you as a bride. Different dresses, different settings, different moods — or a single moodboard direction.",
-    list: ["10 Bespoke bridal images", "Multiple dress silhouettes", "Multiple venues & moods", "Or one curated MOODBOARD", "Delivered 48 HOURS"],
+  { n: "01", kind: "AI Preview", name: "BRIDAL GLIMPSE", cta: "Start preview", price: "89€",
+    desc: "A first look — 10 AI-rendered images of you as a bride. Different dresses, different settings, different moods. Perfect to test your direction before committing.",
+    list: ["10 bespoke bridal images", "Multiple dress silhouettes", "Multiple venues & moods", "One curated moodboard direction", "Delivered in 48 hours"],
     popular: true },
-  { n: "02", kind: "AI Preview", name: "BRIDAL VISION", cta: "Order Now", price: "399€",
-    desc: "For Brides & Wedding Planners. The full plan, visualized. Send us photos of you, your partner, your venue, your Pinterest saves. We create your wedding day so you and your vendors are aligned before anyone pays a deposit.",
-    list: ["You and your partner as bride and groom", "Your venue styled: flowers, lighting, tables, ceremony setup", "3 complete looks: ceremony, reception, golden hour", "Moodboard PDF for your entire vendor team", "1 revision included", "15 second reel", "Personal call with Eva Creative"],
+  { n: "02", kind: "AI Preview", name: "WEDDING BOOK", cta: "Order Wedding Book", price: "399€",
+    desc: "The full plan, visualized. Your complete Wedding Book — vision, budget, dress, flowers, venue setup. Everything aligned before you pay a single deposit.",
+    list: ["You & your partner styled as bride and groom", "Your venue: flowers, lighting, tables, ceremony setup", "3 complete looks: ceremony, reception, golden hour", "Full wedding budget breakdown — line by line", "Moodboard PDF for your entire vendor team", "Color palette + dress direction + flower recommendations", "1 revision included · Personal call with Eva Creative"],
     medal: true }];
 
   const renderCard = (t) =>
@@ -3775,13 +3774,13 @@ function Offer({ onBegin }) {
         <div className="section-card" id="offer">
           <div className="section-head-row tv-head-row">
             <div className="tv-eyebrow"><span className="tv-eyebrow-dot"></span>Pricing</div>
-            <h2 className="section-title tv-title"><em>Imagined.</em><br />See your wedding<br />before it happens.</h2>
+            <h2 className="section-title tv-title"><em>Plan</em> your wedding<br />in 10 minutes.</h2>
             <p className="section-sub tv-sub">
-              The Bridal Circle shows you the dream. Eva Creative films the reality.
-              From preview to legacy, in one place. We help brides see the dream before the wedding day.
+              Two ways to start. Try a quick AI preview, or get the complete Wedding Book — your budget,
+              moodboard, dress, flowers, venue and decor, all in one place. Designed by Eva Creative.
             </p>
             <div className="tv-pill">
-              <span>Preview your wedding day</span>
+              <span>From 89€ · No deposits at vendors yet</span>
               <span className="tv-pill-tick" aria-hidden="true">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
               </span>
@@ -3791,7 +3790,7 @@ function Offer({ onBegin }) {
             {ai.map(renderCard)}
           </div>
           <p className="tv-foot-note">
-            The Bridal Circle Wedding Preview is our planning service. Before we film your real day, we create your vision together. You see the dress, the hair, the venue setup. You walk into your wedding with zero guesswork.
+            Both packages are delivered digitally. Most brides start with the 89€ Glimpse to test direction, then upgrade to the full Wedding Book. We work with limited brides each month — quality over volume.
           </p>
         </div>
       </section>
@@ -3842,12 +3841,13 @@ function Vision() {
 
   return (
     <section className="section">
-      <div className="section-card" id="vision">
+      <div className="section-card" id="atelier">
         <div className="section-head-row">
-          <h2 className="section-title" style={{ fontWeight: "800" }}>Try your <em>wedding vision</em><br />before the day.</h2>
+          <div className="tv-eyebrow" style={{ marginBottom: 12 }}><span className="tv-eyebrow-dot"></span>AI Atelier · Live demo</div>
+          <h2 className="section-title" style={{ fontWeight: "800" }}>Try the <em>AI Atelier</em><br />right now.</h2>
           <p className="section-sub">
-            Upload a portrait, choose your wedding world, and watch your moodboard
-            transform into the first frame of <em>your</em> wedding day.
+            Upload your portrait, choose a destination, and see yourself there — as a bride.
+            Coming soon: dress try-on, hair styles, couple poses, and short reels with trending music.
           </p>
         </div>
 
@@ -3930,6 +3930,33 @@ function Vision() {
             </div>
           </div>
         </div>
+
+        <div style={{ marginTop: 56, paddingTop: 40, borderTop: "1px solid var(--line)" }}>
+          <div className="tv-eyebrow" style={{ marginBottom: 14 }}><span className="tv-eyebrow-dot"></span>Coming soon to the Atelier</div>
+          <h3 className="section-title" style={{ fontSize: "clamp(26px, 3vw, 38px)", fontWeight: "700", marginBottom: 28 }}>More ways to <em>see yourself</em> as a bride.</h3>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 14 }}>
+            {[
+            { icon: "♛", title: "Dress Try-On", desc: "See real silhouettes on you — A-line, mermaid, ballgown, slip. Find your fit before fittings." },
+            { icon: "✂", title: "Hair Styles", desc: "Updos, soft waves, veils, accessories. Preview every hair direction with your face." },
+            { icon: "✈", title: "Destinations", desc: "Santorini, Toscana, Como, Dubai, Paris, Bali — see yourself there before booking." },
+            { icon: "♡", title: "Couple Poses", desc: "You + your partner styled together. Editorial portraits, candid moments, golden hour." },
+            { icon: "✦", title: "Bridal Setups", desc: "Your venue dressed: ceremony, reception, decor, lighting — visualized to scale." },
+            { icon: "▶", title: "Short Reels", desc: "Auto-generated cinematic reels with trending music. Share your wedding vision in seconds." }].
+            map((f, i) =>
+            <div key={i} style={{ background: "var(--bg-card)", border: "1px solid var(--line)", borderRadius: 14, padding: 22 }}>
+                <div style={{ fontSize: 26, color: "var(--orange)", marginBottom: 10, fontFamily: "var(--f-display)", lineHeight: 1 }}>{f.icon}</div>
+                <h4 style={{ fontSize: 17, fontWeight: 700, margin: "0 0 8px", fontFamily: "var(--f-display)" }}>{f.title}</h4>
+                <p style={{ fontSize: 14, color: "var(--muted)", margin: 0, lineHeight: 1.55 }}>{f.desc}</p>
+              </div>
+            )}
+          </div>
+          <div style={{ textAlign: "center", marginTop: 32 }}>
+            <button className="hero-cta" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
+              Join the waitlist <span className="hero-cta-arrow">→</span>
+            </button>
+          </div>
+        </div>
+
       </div>
     </section>);
 
@@ -4070,11 +4097,8 @@ function Contact() {
       <div className="contact-bg" aria-hidden="true"></div>
       <div className="contact-inner">
         <div className="contact-left">
-          <h2 className="contact-title">Begin your<br />wedding<br /><em>preview.</em></h2>
-          <p className="contact-blurb">Have a wedding in mind? Whether you're booking a real day with Eva Creative or starting with a
-Bridal Circle Vision moodboard — we're here to bring your vision to life.
-
-          </p>
+          <h2 className="contact-title">Start your<br /><em>Wedding Book.</em></h2>
+          <p className="contact-blurb">Tell us about your day. We'll come back within 48 hours with the next steps — whether you start with a 89€ Glimpse, the full 399€ Wedding Book, or join the AI Atelier waitlist.</p>
         </div>
         <div className="form-glass">
           {done ?
@@ -4512,31 +4536,28 @@ function Why() {
           <div className="reel-card why-reel-card">
             <div className="reel-bg" style={{ background: "linear-gradient(180deg, #2a1810, #50301a)" }} />
             <div className="reel-shade" />
-            <div className="reel-duration">0:42</div>
-            <div className="reel-play" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
-            </div>
+            <div className="reel-duration">10 min</div>
             <div className="reel-meta">
-              <div className="reel-sub">Featured Film</div>
-              <div className="reel-title">Ana &amp; Andrei</div>
-              <div className="reel-sub" style={{ marginTop: 4 }}>Coastal Sicily</div>
+              <div className="reel-sub">Wedding Book Preview</div>
+              <div className="reel-title">Your day,<br />visualized.</div>
+              <div className="reel-sub" style={{ marginTop: 4 }}>by Eva Creative</div>
             </div>
           </div>
         </div>
         <div className="why-text-col">
-          <span className="why-eyebrow">Who &amp; Why</span>
-          <h2 className="why-title">Why The<br />Bridal <em>Circle</em><br />exists.</h2>
+          <span className="why-eyebrow">About</span>
+          <h2 className="why-title">Created by<br /><em>Eva Creative</em>.</h2>
           <div className="why-body">
-            <p>For years, I filmed weddings and watched the same story unfold. Every bride dreams about the day long before it happens — the dress, the light, the mood, the world around her. But very few brides actually <strong>get to see that dream</strong> before the wedding.</p>
-            <p>The Bridal Circle was created to change that. It helps modern brides explore their wedding identity through curated AI bridal imagery — and it also helps couples refine wedding photos they already love, but wish were even more beautiful.</p>
+            <p>For years, I filmed weddings and watched the same story unfold. Brides spending months — sometimes <strong>tens of thousands of euros</strong> — without ever seeing what their day would actually look like. Endless Pinterest boards, scattered vendors, no clarity.</p>
+            <p>The Bridal Circle was built to end the guesswork. One Wedding Book that brings everything together: your <em>vision</em>, your <em>budget</em>, your <em>flowers</em>, your <em>dress</em>, your <em>setup</em> — visualized before you commit to a single vendor.</p>
           </div>
         </div>
       </div>
       <div className="why-cards reveal-stagger">
-        <div className="why-card">Brides who want to explore their wedding aesthetic before the day happens.</div>
-        <div className="why-card">Destination brides who want to visualize their wedding world with clarity.</div>
-        <div className="why-card">Women who love fashion, editorial imagery and luxury bridal styling.</div>
-        <div className="why-card">Couples who already have wedding photos and want to refine them beautifully.</div>
+        <div className="why-card">For brides who want to plan smart — and see everything before the deposits.</div>
+        <div className="why-card">For destination weddings — Santorini, Toscana, Como, Dubai, Paris.</div>
+        <div className="why-card">For women who love editorial imagery and refined bridal styling.</div>
+        <div className="why-card">For couples who want one clear vision their entire vendor team can follow.</div>
       </div>
     </section>);
 }
@@ -4545,20 +4566,59 @@ function Join() {
   return (
     <section className="join-section" id="join">
       <div className="join-card reveal">
-        <div className="join-eyebrow">Join Community</div>
-        <h2 className="join-title" style={{ color: "rgb(0, 0, 0)" }}>Join The Bridal <em>Circle</em></h2>
-        <p className="join-sub">The Bridal Circle is more than a service. It is a growing community of modern brides exploring wedding identity, fashion, inspiration and visual storytelling together.</p>
+        <div className="join-eyebrow">Private community · For brides</div>
+        <h2 className="join-title" style={{ color: "rgb(0, 0, 0)" }}>The Bridal <em>Circle</em> Community.</h2>
+        <p className="join-sub">A private space for brides preparing for their day. Honest conversations between women who get it — what works, what doesn't, which vendor delivered, which trend isn't worth it. No filters, no influencer noise. Just brides helping brides.</p>
         <div className="join-perks">
-          <div className="join-perk">Early access to new bridal worlds</div>
-          <div className="join-perk">Exclusive style inspiration</div>
-          <div className="join-perk">Community discussions and ideas</div>
-          <div className="join-perk">Wedding aesthetic guides and launches</div>
+          <div className="join-perk">Real reviews from real brides — vendors, dresses, venues</div>
+          <div className="join-perk">Honest budget conversations — what things actually cost</div>
+          <div className="join-perk">Style advice & second opinions before you decide</div>
+          <div className="join-perk">Destination wedding tips from brides who did it</div>
         </div>
         <button className="join-cta" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
-          Join The Community
+          Join the Circle
         </button>
       </div>
     </section>);
+}
+
+/* ===== WEDDING BOOK CONTENTS ===== */
+function WeddingBookContents() {
+  const items = [
+  { icon: "€", title: "Wedding Budget", desc: "Full breakdown — line by line. Photography, flowers, dress, catering, decor. You see where every euro goes before you commit.", tag: "Save 1000s in surprises" },
+  { icon: "✦", title: "Personal Moodboard", desc: "A curated visual story of your day. Mood, light, atmosphere, references — the one document your entire vendor team will follow.", tag: "Editorial quality" },
+  { icon: "◐", title: "Color Palette", desc: "The exact palette for your wedding — invitations, flowers, table linens, bridesmaid dresses. Cohesive, intentional, photographable.", tag: "Pinterest-ready" },
+  { icon: "❀", title: "Flower Selection", desc: "Bouquet, centerpieces, ceremony arch. Recommendations matched to your venue, season and budget — with photo references.", tag: "Vendor-ready brief" },
+  { icon: "♛", title: "Dress Direction", desc: "Silhouette, fabric, neckline, accessories. AI previews of you in 3 directions so you walk into fittings with clarity, not chaos.", tag: "See it on you first" },
+  { icon: "✶", title: "Venue & Setup", desc: "Ceremony, reception, golden hour — your space styled. Lighting, tables, flowers, photo spots. Visualize before you book.", tag: "Zero surprises on the day" }];
+
+
+  return (
+    <section className="section" id="wedding-book">
+      <div className="section-card">
+        <div className="section-head-row tv-head-row">
+          <div className="tv-eyebrow"><span className="tv-eyebrow-dot"></span>What's inside</div>
+          <h2 className="section-title tv-title"><em>Your</em> Wedding Book.</h2>
+          <p className="section-sub tv-sub">
+            Six pieces. One clear vision. Delivered as a beautiful PDF you can share with every vendor —
+            so everyone, from florist to photographer, works from the same page.
+          </p>
+        </div>
+        <div className="tiers tv-grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 18 }}>
+          {items.map((it, i) =>
+          <article key={i} className="tier-card v2" style={{ padding: "28px 24px" }}>
+              <div style={{ fontSize: 32, color: "var(--orange)", fontFamily: "var(--f-display)", marginBottom: 14, lineHeight: 1 }}>{it.icon}</div>
+              <h3 className="tv-name" style={{ fontSize: 22, marginBottom: 10 }}>{it.title}</h3>
+              <p className="tv-desc" style={{ marginBottom: 16 }}>{it.desc}</p>
+              <div className="tv-pill" style={{ display: "inline-flex", fontSize: 11, padding: "8px 14px" }}>
+                <span>{it.tag}</span>
+              </div>
+            </article>
+          )}
+        </div>
+      </div>
+    </section>);
+
 }
 
 function App() {
@@ -4586,10 +4646,9 @@ function App() {
     <>
       <Hero />
       <Why />
-      <Gallery />
       <Offer onBegin={(kind, tier) => setModal({ kind, tier })} />
+      <WeddingBookContents />
       <Vision />
-      <Stats />
       <Join />
       <Contact />
       <Footer />
